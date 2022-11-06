@@ -30,12 +30,12 @@ async function createProj(req, res) {
 }
 
 async function getProj(req, res) {
-   let proj = await Projects.findById(req.params.id).populate("issues");
-   // console.log(proj.issues.forEach(e => console.log(e.author)));
+	let proj = await Projects.findById(req.params.id).populate("issues");
+	// console.log(proj.issues.forEach(e => console.log(e.author)));
 	return res.render("project", {
 		project: proj,
-      title: proj.name + " Issues",
-      issues: proj.issues
+		title: proj.name + " Issues",
+		issues: proj.issues,
 	});
 }
 
@@ -66,9 +66,9 @@ async function addIssue(req, res) {
 }
 
 async function search(req, res) {
-   let proj = await Projects.findById(req.params.id);
+	let proj = await Projects.findById(req.params.id);
 	let data = [];
-   let labels = Object.keys(req.body);
+	let labels = Object.keys(req.body);
 	if (labels.length > 0) {
 		for (let x of labels) {
 			var temp = await Issues.find({
@@ -80,14 +80,11 @@ async function search(req, res) {
 			}
 		}
 	}
-	// return res.status(200).json({
-	// 	data: data,
-	// });
-   return res.render("project", {
-      title: proj.title + " Issues",
-      project: proj,
-      issues: data
-   });
+	return res.render("project", {
+		title: proj.name + " Issues",
+		project: proj,
+		issues: data,
+	});
 }
 
 module.exports = {
