@@ -1,0 +1,80 @@
+<!-- <ul>
+   <li>
+      
+   </li>
+</ul>
+ -->
+<p>
+  <strong>
+    <%= project.name %>
+  </strong> by <%= project.author %>
+</p>
+<p>
+  Project description : <%= project.description %>
+</p>
+<h3>Add new Issue to this Project</h3>
+<form action="/<%= project.id %>/newIssue" method="POST">
+  <label for="name">Author: </label>
+  <input type="text" name="author">
+  <label for="title">Title: </label>
+  <input type="text" name="title">
+  <label for="label">Choose a Label:</label>
+
+  <select name="label">
+    <option value="bug">Bug</option>
+    <option value="Not Implemented">Not Implemented</option>
+    <option value="hotfix">Hotfix</option>
+    <option value="documentation">documentation</option>
+    <option value="more information">more information</option>
+    <option value="tests">tests</option>
+    <option value="replication">replication</option>
+    <option value="Operations">Operations</option>
+    <option value="blocked">blocked</option>
+    <option value="Support">Support</option>
+  </select>
+  <label for="description">Add Some Description: </label>
+  <input type="text" name="description" cols="30" rows="10"></input>
+  <button type="submit">Submit</button>
+</form>
+<h3>Filter</h3>
+<form action="/<%= project.id %>/search" method="POST">
+  <input type="checkbox" name="bug" value="bug">
+  <label> bug</label><br>
+  <input type="checkbox" name="Not Implemented" value="Not Implemented">
+  <label> Not Implemented</label><br>
+  <input type="checkbox" name="hotfix" value="hotfix">
+  <label> hotfix</label><br>
+  <button type="submit">Apply Filter</button>
+</form>
+
+<form action="">
+  <select name="author">
+    <%  %>
+    <% issues.forEach((e)=>{ %>
+    <% if (e.author) { %>
+    <option value="<%= e.author%> ">
+      <%= e.author %>
+    </option>
+    <% } %>
+    <% }) %>
+  </select>
+</form>
+
+<h3>Issues List</h3>
+<ul>
+  <% issues.forEach(element=> { %>
+  <li>
+    <strong>
+      <%= element.title %>
+    </strong> raised by <%= element.author %>
+    <ul>
+      <li>
+        Label : <%= element.label %>
+      </li>
+      <li>
+        Description: <%= element.description %>
+      </li>
+    </ul>
+  </li>
+  <% }) %>
+</ul>
