@@ -11,21 +11,25 @@ async function home(req, res) {
 
 async function createProj(req, res) {
 	let existing = await Projects.findOne({
-		name: req.query.name,
+		name: req.body.name,
 	});
 	if (existing) {
-		return res.status(401).json({
-			message: "This Project name Already exists",
-		});
+		// return res.status(401).json({
+		// 	message: "This Project name Already exists",
+		// });
+		req.flash("error", "This Project name already Exists");
+		return res.redirect("/");
 	} else {
 		let dbResp = await Projects.create({
-			name: req.query.name,
-			author: req.query.author,
-			description: req.query.description,
+			name: req.body.name,
+			author: req.body.author,
+			description: req.body.description,
 		});
-		return res.status(200).json({
-			message: dbResp._id,
-		});
+		// return res.status(200).json({
+		// 	message: dbResp._id,
+		// });
+		req.flash("success", "Project Created successfully");
+		return res.redirect("/");
 	}
 }
 
@@ -55,7 +59,7 @@ async function addIssue(req, res) {
 		// return res.status(200).json({
 		// 	message: "Added to db Successfully",
 		// });
-		req.flash("success", "Added to db successfully");
+		req.flash("success", "Issue Created successfully");
 		return res.redirect("back");
 	} catch (err) {
 		req.flash("error", "Internal Server Error");
@@ -87,10 +91,29 @@ async function search(req, res) {
 	});
 }
 
+async function removeIssue(req, res) {
+	try {
+		let issueId = req.params.issueId;
+		let projId = req.params.projId;
+		let proj = await Projects.findById(projId).populate("issues");
+		await Issues.deleteOne({
+			_id: issueId,
+		});
+		proj.issues.pull(issueId);
+		req.flash("success", "Issue Removed successfully");
+		return res.redirect("back");
+	} catch (err) {
+		return res.status(500).json({
+			message: "Internal Server Error",
+		});
+	}
+}
+
 module.exports = {
 	home,
 	createProj,
 	getProj,
 	addIssue,
 	search,
+	removeIssue,
 };

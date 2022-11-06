@@ -7,6 +7,7 @@ Router.get("/", homeController.home);
 Router.post("/", homeController.createProj);
 Router.get("/get/:id", homeController.getProj);
 Router.post("/:id/newIssue", homeController.addIssue);
-Router.post("/:id/search",homeController.search)
+Router.post("/:id/search", homeController.search);
+Router.get("/delete/:projId/:issueId", homeController.removeIssue);
 
 module.exports = Router;

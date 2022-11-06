@@ -199,8 +199,7 @@
             <p class="card-text">
                <%= element.description %>
             </p>
-            <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a>
+            <a href="/delete/<%= project.id %>/<%= element.id %> " class="card-link">Remove this issue</a>
          </div>
       </div>
       <% }) %>
