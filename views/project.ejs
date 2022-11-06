@@ -1,80 +1,175 @@
-<!-- <ul>
-   <li>
-      
-   </li>
-</ul>
- -->
-<p>
-  <strong>
-    <%= project.name %>
-  </strong> by <%= project.author %>
-</p>
-<p>
-  Project description : <%= project.description %>
-</p>
-<h3>Add new Issue to this Project</h3>
-<form action="/<%= project.id %>/newIssue" method="POST">
-  <label for="name">Author: </label>
-  <input type="text" name="author">
-  <label for="title">Title: </label>
-  <input type="text" name="title">
-  <label for="label">Choose a Label:</label>
+<nav class="navbar navbar-expand-lg bg-light">
+   <div class="container-fluid">
+      <a class="navbar-brand" href="#">Issue Tracker</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+               <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item dropdown">
+               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  Filter Issues
+               </a>
+               <ul class="dropdown-menu">
+                  <form action="/dummy" method="post">
+                     <li>
+                        <div class="form-check ms-2">
+                           <input type="checkbox" name="bug" class="form-check-input" id="dropdownCheck">
+                           <label class="form-check-label" for="dropdownCheck">
+                              Bug
+                           </label>
+                        </div>
+                     </li>
+                     <li>
+                        <div class="form-check ms-2">
+                           <input type="checkbox" name="bug" class="form-check-input" id="dropdownCheck">
+                           <label class="form-check-label" for="dropdownCheck">
+                              Bug
+                           </label>
+                        </div>
+                     </li>
+                     <li>
+                        <div class="form-check ms-2">
+                           <input type="checkbox" name="bug" class="form-check-input" id="dropdownCheck">
+                           <label class="form-check-label" for="dropdownCheck">
+                              Bug
+                           </label>
+                        </div>
+                     </li>
+                     <li>
+                        <div class="form-check ms-2">
+                           <input type="checkbox" name="bug" class="form-check-input" id="dropdownCheck">
+                           <label class="form-check-label" for="dropdownCheck">
+                              Bug
+                           </label>
+                        </div>
+                     </li>
+                     <li>
+                        <div class="form-check ms-2">
+                           <input type="checkbox" name="bug" class="form-check-input" id="dropdownCheck">
+                           <label class="form-check-label" for="dropdownCheck">
+                              Bug
+                           </label>
+                        </div>
+                     </li>
+                     <li>
+                        <div class="form-check ms-2">
+                           <input type="checkbox" name="bug" class="form-check-input" id="dropdownCheck">
+                           <label class="form-check-label" for="dropdownCheck">
+                              Bug
+                           </label>
+                        </div>
+                     </li>
+                     <li>
+                        <div class="form-check ms-2">
+                           <input type="checkbox" name="bug" class="form-check-input" id="dropdownCheck">
+                           <label class="form-check-label" for="dropdownCheck">
+                              Bug
+                           </label>
+                        </div>
+                     </li>
+                     <li>
+                        <hr class="dropdown-divider">
+                     </li>
+                     <!-- <li><a class="dropdown-item" href="#">submit</a></li> -->
+                     <li><button class="btn btn-primary w-100 h-100" type="submit">Apply Filter</button></li>
+                  </form>
+               </ul>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link disabled">Disabled</a>
+            </li>
+         </ul>
+         <form class="d-flex" role="search">
+            <button class="btn btn-primary me-2 text-nowrap" type="button" class="btn btn-primary"
+               data-bs-toggle="modal" data-bs-target="#exampleModal">
+               Add new Issue
+            </button>
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+         </form>
+      </div>
+   </div>
+</nav>
 
-  <select name="label">
-    <option value="bug">Bug</option>
-    <option value="Not Implemented">Not Implemented</option>
-    <option value="hotfix">Hotfix</option>
-    <option value="documentation">documentation</option>
-    <option value="more information">more information</option>
-    <option value="tests">tests</option>
-    <option value="replication">replication</option>
-    <option value="Operations">Operations</option>
-    <option value="blocked">blocked</option>
-    <option value="Support">Support</option>
-  </select>
-  <label for="description">Add Some Description: </label>
-  <input type="text" name="description" cols="30" rows="10"></input>
-  <button type="submit">Submit</button>
-</form>
-<h3>Filter</h3>
-<form action="/<%= project.id %>/search" method="POST">
-  <input type="checkbox" name="bug" value="bug">
-  <label> bug</label><br>
-  <input type="checkbox" name="Not Implemented" value="Not Implemented">
-  <label> Not Implemented</label><br>
-  <input type="checkbox" name="hotfix" value="hotfix">
-  <label> hotfix</label><br>
-  <button type="submit">Apply Filter</button>
-</form>
 
-<form action="">
-  <select name="author">
-    <%  %>
-    <% issues.forEach((e)=>{ %>
-    <% if (e.author) { %>
-    <option value="<%= e.author%> ">
-      <%= e.author %>
-    </option>
-    <% } %>
-    <% }) %>
-  </select>
-</form>
+<!-- Button trigger modal -->
 
-<h3>Issues List</h3>
-<ul>
-  <% issues.forEach(element=> { %>
-  <li>
-    <strong>
-      <%= element.title %>
-    </strong> raised by <%= element.author %>
-    <ul>
-      <li>
-        Label : <%= element.label %>
-      </li>
-      <li>
-        Description: <%= element.description %>
-      </li>
-    </ul>
-  </li>
-  <% }) %>
-</ul>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content w-100">
+         <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add a Issue</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+         </div>
+         <form action="/<%= project.id %>/newIssue" method="post">
+            <div class="form-group px-3">
+               <label for="recipient-name" class="col-form-label">Author:</label>
+               <input type="text" name="author" class="form-control" id="recipient-name">
+            </div>
+            <div class="form-group px-3">
+               <label for="recipient-name" class="col-form-label">Title:</label>
+               <input type="text" name="title" class="form-control" id="recipient-name">
+            </div>
+            <div class="form-group px-3 mb-1">
+               <label for="message-text" class="col-form-label">Description:</label>
+               <textarea class="form-control" name="description" id="message-text"></textarea>
+            </div>
+            <!-- </div> -->
+            <div class="col-md">
+               <div class="form-floating">
+                  <select name="label" class="form-select" id="floatingSelectGrid">
+                     <option selected>Select Label:</option>
+                     <option value="bug">Bug</option>
+                     <option value="Not Implemented">Not Implemented</option>
+                     <option value="hotfix">Hotfix</option>
+                     <option value="documentation">documentation</option>
+                     <option value="more information">more information</option>
+                     <option value="tests">tests</option>
+                     <option value="replication">replication</option>
+                     <option value="Operations">Operations</option>
+                     <option value="blocked">blocked</option>
+                     <option value="Support">Support</option>
+                  </select>
+                  <label for="floatingSelectGrid">Works with selects</label>
+               </div>
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+               <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
+
+<div class="d-flex w-75 m-auto pt-5 h-100 flex-wrap">
+   <% issues.forEach(element=> { %>
+      <div class="card m-2" style="width: 18rem;">
+         <div class="card-body">
+            <h5 class="card-title">
+               <%= element.title %> &ensp; <i class="fa-solid fa-bug"></i>
+            </h5>
+            <div class="relative end-0"></div>
+            <h6 class="card-subtitle mb-2 text-muted">
+               <%= element.author %>
+            </h6>
+            <p class="card-text">
+               <%= element.description %>
+            </p>
+            <a href="#" class="card-link">Card link</a>
+            <a href="#" class="card-link">Another link</a>
+         </div>
+      </div>
+      <% }) %>
+</div>
