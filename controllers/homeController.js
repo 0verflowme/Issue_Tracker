@@ -134,6 +134,33 @@ async function searchProj(req, res) {
 	});
 }
 
+async function searchIssue(req, res) {
+	let proj = await Projects.findById(req.params.projId);
+	let data = [];
+	data.push(
+		...(await Issues.find({
+			title: req.query.query,
+		}))
+	);
+	data.push(
+		...(await Issues.find({
+			author: req.query.query,
+		}))
+	);
+
+	data.push(
+		...(await Issues.find({
+			description: req.query.query,
+		}))
+	);
+
+	return res.render("project", {
+		title: "Search",
+		project: proj,
+		issues: data,
+	});
+}
+
 module.exports = {
 	home,
 	createProj,
@@ -142,4 +169,5 @@ module.exports = {
 	search,
 	removeIssue,
 	searchProj,
+	searchIssue,
 };
