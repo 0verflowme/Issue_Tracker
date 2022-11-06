@@ -100,6 +100,7 @@ async function removeIssue(req, res) {
 			_id: issueId,
 		});
 		proj.issues.pull(issueId);
+		proj.save();
 		req.flash("success", "Issue Removed successfully");
 		return res.redirect("back");
 	} catch (err) {
@@ -107,6 +108,30 @@ async function removeIssue(req, res) {
 			message: "Internal Server Error",
 		});
 	}
+}
+async function searchProj(req, res) {
+	let data = [];
+	data.push(
+		...(await Projects.find({
+			name: req.query.query,
+		}))
+	);
+	data.push(
+		...(await Projects.find({
+			author: req.query.query,
+		}))
+	);
+
+	data.push(
+		...(await Projects.find({
+			description: req.query.query,
+		}))
+	);
+
+	return res.render("home", {
+		title: "Home",
+		project: data,
+	});
 }
 
 module.exports = {
@@ -116,4 +141,5 @@ module.exports = {
 	addIssue,
 	search,
 	removeIssue,
+	searchProj,
 };
