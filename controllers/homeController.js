@@ -9,6 +9,7 @@ async function home(req, res) {
 	});
 }
 
+// Adding to db
 async function createProj(req, res) {
 	let existing = await Projects.findOne({
 		name: req.body.name,
@@ -33,6 +34,7 @@ async function createProj(req, res) {
 	}
 }
 
+// Fetching from DB using project ID
 async function getProj(req, res) {
 	let proj = await Projects.findById(req.params.id).populate("issues");
 	// console.log(proj.issues.forEach(e => console.log(e.author)));
@@ -43,6 +45,7 @@ async function getProj(req, res) {
 	});
 }
 
+// Adding Issues to DB
 async function addIssue(req, res) {
 	try {
 		let issue = await Issues.create({
@@ -69,6 +72,7 @@ async function addIssue(req, res) {
 	}
 }
 
+// Filtering using labels
 async function search(req, res) {
 	let proj = await Projects.findById(req.params.id);
 	let data = [];
@@ -91,6 +95,7 @@ async function search(req, res) {
 	});
 }
 
+// deleting issues from db
 async function removeIssue(req, res) {
 	try {
 		let issueId = req.params.issueId;
@@ -109,6 +114,8 @@ async function removeIssue(req, res) {
 		});
 	}
 }
+
+// search bar in Home
 async function searchProj(req, res) {
 	let data = [];
 	data.push(
@@ -134,6 +141,7 @@ async function searchProj(req, res) {
 	});
 }
 
+// Search bar in Projects
 async function searchIssue(req, res) {
 	let proj = await Projects.findById(req.params.projId);
 	let data = [];
