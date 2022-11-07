@@ -10,7 +10,7 @@ const Projects = require("./models/project");
 const Issues = require("./models/issue");
 
 const app = express();
-const PORT = 8000;
+const PORT = 5000;
 
 app.use(ejsLayouts);
 app.set("layout extractScripts", true);
