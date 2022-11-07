@@ -14,7 +14,7 @@
 		"mongoose": "^6.7.1"
 	},
 	"scripts": {
-		"start": "nodemon index.js",
+		"start": "node index.js",
 		"prod": "pm2 start index.js"
 	},
 	"engines": {
