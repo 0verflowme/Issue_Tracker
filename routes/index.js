@@ -11,4 +11,5 @@ Router.post("/:id/search", homeController.search);
 Router.get("/delete/:projId/:issueId", homeController.removeIssue);
 Router.get("/search/proj", homeController.searchProj);
 Router.get("/search/projIssue/:projId", homeController.searchIssue);
+
 module.exports = Router;
