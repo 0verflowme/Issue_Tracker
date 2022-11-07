@@ -4,6 +4,7 @@ const ejsLayouts = require("express-ejs-layouts");
 var session = require("express-session");
 const flash = require("connect-flash");
 const customMiddleware = require("./config/middleware");
+const MongoStore = require("connect-mongo");
 
 const db = require("./config/mongoose");
 const Projects = require("./models/project");
@@ -23,6 +24,10 @@ app.use(
 		secret: "kekburger",
 		resave: false,
 		saveUninitialized: false,
+		store: new MongoStore({
+			mongoUrl: "mongodb://localhost/IssueTracker",
+			autoRemove: "disabled",
+		}),
 	})
 );
 app.use(flash());
